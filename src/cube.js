@@ -244,10 +244,6 @@ class Cube{
       pop()
     }
 
-
-
-
-
   }
 
   drawOrder(face){

@@ -34,6 +34,7 @@ function mouseWheel(event){
   if(event.delta < 0){
     for(let i =0;i < screenObjects.length; i++){
       screenObjects[i].scale(1.1)
+      
     }
   }
   if(event.delta > 0){
@@ -48,11 +49,7 @@ function RotateObjects(valX,valY){
   for(let i =0; i < screenObjects.length;i++){
     screenObjects[i].rotate("y",valX)
     screenObjects[i].rotate("x",valY)
+
   }
 }
 
-
-
-function doubleClicked() {
-  requestPointerLock();
-}

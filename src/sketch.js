@@ -27,6 +27,7 @@ function setup() {
 }
 
 function draw() {
+  // frameRate(100)
   angleMode(DEGREES)
 
   background(100);
@@ -34,9 +35,15 @@ function draw() {
   drawGui()
 
   drawCameraView();
-
-  RotateObjects(joystick.valX,joystick.valY);
   
+  RotateObjects(joystick.valX,joystick.valY);
+
+  let fps = frameRate();
+  push()
+  fill(255,255,255)
+  text(fps, 50, 50);
+  pop()
+
 }
 
 
