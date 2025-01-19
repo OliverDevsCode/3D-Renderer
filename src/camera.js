@@ -1,7 +1,7 @@
 let Camera = {
   x:500,
   y:500,
-  z:0,
+  z:-100,
 }
 
 function drawCameraView(){
@@ -24,7 +24,6 @@ function drawCameraView(){
   for(let i =0; i < depth.length;i++){
 
     screenObjects[depth[i][0]].translate(Camera.x,Camera.y,Camera.z)
-    console.log("z",screenObjects[depth[i][0]].vertex1.matrix[2])
     screenObjects[depth[i][0]].draw();
     screenObjects[depth[i][0]].translate(-Camera.x,-Camera.y,-Camera.z)
 
@@ -34,16 +33,16 @@ function drawCameraView(){
 
 function mouseWheel(event){
   if(event.delta < 0){
-    // for(let i =0;i < screenObjects.length; i++){
-    //   screenObjects[i].scale(1.1)
+    for(let i =0;i < screenObjects.length; i++){
+      screenObjects[i].scale(1.1)
 
-    // }
+    }
     Camera.z -= 10
   }
   if(event.delta > 0){
-    // for(let i =0;i < screenObjects.length; i++){
-    //   screenObjects[i].scale(0.9)
-    // }
+    for(let i =0;i < screenObjects.length; i++){
+      screenObjects[i].scale(0.9)
+    }
     Camera.z += 10
 
   }
@@ -59,9 +58,9 @@ function RotateObjects(valX,valY){
 }
 
 function doubleClicked(){
-  cube.perspective(45)
-  cube2.perspective(45)
-  cube3.perspective(45)
+  cube.perspective()
+  cube2.perspective()
+  cube3.perspective()
 
 }
 
