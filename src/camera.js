@@ -1,7 +1,7 @@
 let Camera = {
   x:500,
   y:500,
-  z:500,
+  z:0,
 }
 
 function drawCameraView(){
@@ -22,9 +22,11 @@ function drawCameraView(){
   }
   depth = depth.sort((b, a) => a[1] - b[1]) 
   for(let i =0; i < depth.length;i++){
-    this.translate(width/2,height/2,1)
-    screenObjects[depth[i][0]].draw()
-    this.translate(-(width/2),-(height/2),1)
+
+    screenObjects[depth[i][0]].translate(Camera.x,Camera.y,Camera.z)
+    console.log("z",screenObjects[depth[i][0]].vertex1.matrix[2])
+    screenObjects[depth[i][0]].draw();
+    screenObjects[depth[i][0]].translate(-Camera.x,-Camera.y,-Camera.z)
 
   }  
 
@@ -32,15 +34,18 @@ function drawCameraView(){
 
 function mouseWheel(event){
   if(event.delta < 0){
-    for(let i =0;i < screenObjects.length; i++){
-      screenObjects[i].scale(1.1)
+    // for(let i =0;i < screenObjects.length; i++){
+    //   screenObjects[i].scale(1.1)
 
-    }
+    // }
+    Camera.z -= 10
   }
   if(event.delta > 0){
-    for(let i =0;i < screenObjects.length; i++){
-      screenObjects[i].scale(0.9)
-    }
+    // for(let i =0;i < screenObjects.length; i++){
+    //   screenObjects[i].scale(0.9)
+    // }
+    Camera.z += 10
+
   }
   
 }
@@ -58,4 +63,22 @@ function doubleClicked(){
   cube2.perspective(45)
   cube3.perspective(45)
 
+}
+
+function CameraControls(){
+  if (keyIsDown(LEFT_ARROW) === true) {
+    Camera.x -= 1;
+  }
+  
+  if (keyIsDown(RIGHT_ARROW) === true) {
+    Camera.x += 1;
+  }
+  
+  if (keyIsDown(UP_ARROW) === true) {
+    Camera.y -= 1;
+  }
+  
+  if (keyIsDown(DOWN_ARROW) === true) {
+    Camera.y += 1;
+  }
 }

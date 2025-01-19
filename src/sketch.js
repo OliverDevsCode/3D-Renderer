@@ -33,6 +33,8 @@ function draw() {
 
   drawGui()
   drawCameraView();
+
+  CameraControls()
   
   RotateObjects(joystick.valX,joystick.valY);
 
@@ -44,26 +46,6 @@ function draw() {
 
 }
 
-
-
-
-//MOVE A SQUARE
-// if (keyIsDown(UP_ARROW) === true) {
-//   cube.translate(0,-2,0)
-// }
-
-// if (keyIsDown(DOWN_ARROW) === true) {
-//   cube.translate(0,2,0)
-// }
-// if (keyIsDown(LEFT_ARROW) === true) {
-//   cube.translate(-2,0,0)
-
-// }
-
-// if (keyIsDown(RIGHT_ARROW) === true) {
-//   cube.translate(2,0,0)
-
-// }
 
 
 

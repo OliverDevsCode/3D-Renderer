@@ -163,49 +163,32 @@ class Rectangle{
       this.vertex8 = new Matrix(4,1,multiply(scaleMatrix,this.vertex8))
   }
 
-   /**
+    /**
  * Translate.
  * @function
- * @param {string} axis - scale size
- * @param {int} angle - angle
+ * @param {int} x - x size
+ * @param {int} y - y size
+ * @param {int} z - z size
  */
-  translate(axis,val){
+    translate(x,y,z){
 
-    let translateMatrix;
-
-    if(axis == "z"){
-      translateMatrix = new Matrix(4,4,[
-        [1, 0, 0, 0],
-        [0, 1, 0, 0],
-        [0, 0, 1, val],
-        [0, 0, 0, 1]
-      ])
+      let translateMatrix = new Matrix(4,4,[
+          [1, 0, 0, x],
+          [0, 1, 0, y],
+          [0, 0, 1, z],
+          [0, 0, 0, 1]
+        ])
+    
+      
+        this.vertex1 = new Matrix(4,1,multiply(translateMatrix,this.vertex1))
+        this.vertex2 = new Matrix(4,1,multiply(translateMatrix,this.vertex2))
+        this.vertex3 = new Matrix(4,1,multiply(translateMatrix,this.vertex3))
+        this.vertex4 = new Matrix(4,1,multiply(translateMatrix,this.vertex4))
+        this.vertex5 = new Matrix(4,1,multiply(translateMatrix,this.vertex5))
+        this.vertex6 = new Matrix(4,1,multiply(translateMatrix,this.vertex6))
+        this.vertex7 = new Matrix(4,1,multiply(translateMatrix,this.vertex7))
+        this.vertex8 = new Matrix(4,1,multiply(translateMatrix,this.vertex8))
     }
-    if(axis == "x"){
-      translateMatrix = new Matrix(4,4,[
-        [1, 0, 0, val],
-        [0, 1, 0, 0],
-        [0, 0, 1, 0],
-        [0, 0, 0, 1],
-      ])
-    }
-    if(axis == "y"){
-      translateMatrix = new Matrix(4,4,[
-        [1, 0, 0, 0],
-        [0, 1, 0, val],
-        [0, 0, 1, 0],
-        [0, 0, 0, 1],
-      ])
-    }
-      this.vertex1 = new Matrix(4,1,multiply(translateMatrix,this.vertex1))
-      this.vertex2 = new Matrix(4,1,multiply(translateMatrix,this.vertex2))
-      this.vertex3 = new Matrix(4,1,multiply(translateMatrix,this.vertex3))
-      this.vertex4 = new Matrix(4,1,multiply(translateMatrix,this.vertex4))
-      this.vertex5 = new Matrix(4,1,multiply(translateMatrix,this.vertex5))
-      this.vertex6 = new Matrix(4,1,multiply(translateMatrix,this.vertex6))
-      this.vertex7 = new Matrix(4,1,multiply(translateMatrix,this.vertex7))
-      this.vertex8 = new Matrix(4,1,multiply(translateMatrix,this.vertex8))
-  }
 
   perspective(distance){
     let fov = 45; // degrees
@@ -237,6 +220,21 @@ class Rectangle{
   }
 
   draw(){
+    this.faces = {
+      front: [this.vertex1.matrix,this.vertex2.matrix,
+             this.vertex3.matrix,this.vertex4.matrix],
+  
+      back: [this.vertex5.matrix,this.vertex6.matrix,
+             this.vertex8.matrix,this.vertex7.matrix],
+      left: [this.vertex5.matrix,this.vertex1.matrix,
+        this.vertex4.matrix,this.vertex7.matrix],
+      right: [this.vertex2.matrix,this.vertex6.matrix,
+        this.vertex8.matrix,this.vertex3.matrix],
+      top: [this.vertex1.matrix,this.vertex2.matrix,
+        this.vertex6.matrix,this.vertex5.matrix],
+      base: [this.vertex3.matrix,this.vertex4.matrix,
+            this.vertex7.matrix,this.vertex8.matrix],
+    }
     let PosOrder = []
 
     PosOrder.push(["front",this.drawOrder(this.faces.front)])

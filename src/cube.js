@@ -168,6 +168,7 @@ class Cube{
  */
   translate(x,y,z){
 
+
     let translateMatrix = new Matrix(4,4,[
         [1, 0, 0, x],
         [0, 1, 0, y],
@@ -184,6 +185,8 @@ class Cube{
       this.vertex6 = new Matrix(4,1,multiply(translateMatrix,this.vertex6))
       this.vertex7 = new Matrix(4,1,multiply(translateMatrix,this.vertex7))
       this.vertex8 = new Matrix(4,1,multiply(translateMatrix,this.vertex8))
+
+
   }
 
   perspective(val){
@@ -267,6 +270,22 @@ class Cube{
   }
 
   draw(){
+
+    this.faces = {
+      front: [this.vertex1.matrix,this.vertex2.matrix,
+             this.vertex3.matrix,this.vertex4.matrix],
+  
+      back: [this.vertex5.matrix,this.vertex6.matrix,
+             this.vertex8.matrix,this.vertex7.matrix],
+      left: [this.vertex5.matrix,this.vertex1.matrix,
+        this.vertex4.matrix,this.vertex7.matrix],
+      right: [this.vertex2.matrix,this.vertex6.matrix,
+        this.vertex8.matrix,this.vertex3.matrix],
+      top: [this.vertex1.matrix,this.vertex2.matrix,
+        this.vertex6.matrix,this.vertex5.matrix],
+      base: [this.vertex3.matrix,this.vertex4.matrix,
+            this.vertex7.matrix,this.vertex8.matrix],
+    }
     
     let PosOrder = []
 
