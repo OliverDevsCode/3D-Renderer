@@ -162,8 +162,9 @@ class Cube{
    /**
  * Translate.
  * @function
- * @param {string} axis - scale size
- * @param {int} angle - angle
+ * @param {int} x - x size
+ * @param {int} y - y size
+ * @param {int} z - z size
  */
   translate(x,y,z){
 
@@ -185,11 +186,11 @@ class Cube{
       this.vertex8 = new Matrix(4,1,multiply(translateMatrix,this.vertex8))
   }
 
-  perspective(distance){
-    let fov = 45; // degrees
+  perspective(val){
+    let fov = val; // degrees
     let aspect = width/height; // aspect ratio (for a 1000x1000 canvas)
-    let n = 1 * distance; // near plane distance
-    let f = 1000 * distance; // far plane distance
+    let n = 100; // near plane distance
+    let f = 1000; // far plane distance
     
     // Calculate the frustum bounds based on the fov and aspect ratio
     let t = n * Math.tan((fov / 2) * Math.PI / 180);
@@ -202,7 +203,9 @@ class Cube{
       [0, 2 * n / (t - b), (t + b) / (t - b), 0],
       [0, 0, -(f + n) / (f - n), -2 * f * n / (f - n)],
       [0, 0, -1, 0]]);
-    
+      
+      console.log("Vertex Start",JSON.stringify(this.vertex1.matrix))
+
       
       this.vertex1 = new Matrix(4,1,multiply(perspectiveMatrix,this.vertex1))
       this.vertex2 = new Matrix(4,1,multiply(perspectiveMatrix,this.vertex2))
@@ -212,6 +215,55 @@ class Cube{
       this.vertex6 = new Matrix(4,1,multiply(perspectiveMatrix,this.vertex6))
       this.vertex7 = new Matrix(4,1,multiply(perspectiveMatrix,this.vertex7))
       this.vertex8 = new Matrix(4,1,multiply(perspectiveMatrix,this.vertex8))
+
+      // Perspective division for vertex1
+      let w1 = this.vertex1.matrix[3]; // Extract w'
+      this.vertex1.matrix[0] /= w1;    // x' / w'
+      this.vertex1.matrix[1] /= w1;    // y' / w'
+      this.vertex1.matrix[2] /= w1;    // z' / w'
+      this.vertex1.matrix[3] = 1;      // Normalize w' to 1
+
+      let w2 = this.vertex2.matrix[3];
+      this.vertex2.matrix[0] /= w2;
+      this.vertex2.matrix[1] /= w2;
+      this.vertex2.matrix[2] /= w2;
+      this.vertex2.matrix[3] = 1;
+
+      let w3 = this.vertex3.matrix[3];
+      this.vertex3.matrix[0] /= w2;
+      this.vertex3.matrix[1] /= w2;
+      this.vertex3.matrix[2] /= w2;
+      this.vertex3.matrix[3] = 1;
+
+      let w4 = this.vertex4.matrix[3];
+      this.vertex4.matrix[0] /= w2;
+      this.vertex4.matrix[1] /= w2;
+      this.vertex4.matrix[2] /= w2;
+      this.vertex4.matrix[3] = 1;
+
+      let w5 = this.vertex5.matrix[3];
+      this.vertex5.matrix[0] /= w2;
+      this.vertex5.matrix[1] /= w2;
+      this.vertex5.matrix[2] /= w2;
+      this.vertex5.matrix[3] = 1;
+
+      let w6 = this.vertex6.matrix[3];
+      this.vertex6.matrix[0] /= w2;
+      this.vertex6.matrix[1] /= w2;
+      this.vertex6.matrix[2] /= w2;
+      this.vertex6.matrix[3] = 1;
+
+      let w7 = this.vertex7.matrix[3];
+      this.vertex7.matrix[0] /= w2;
+      this.vertex7.matrix[1] /= w2;
+      this.vertex7.matrix[2] /= w2;
+      this.vertex7.matrix[3] = 1;
+
+      let w8 = this.vertex8.matrix[3];
+      this.vertex8.matrix[0] /= w2;
+      this.vertex8.matrix[1] /= w2;
+      this.vertex8.matrix[2] /= w2;
+      this.vertex8.matrix[3] = 1;
   }
 
   draw(){

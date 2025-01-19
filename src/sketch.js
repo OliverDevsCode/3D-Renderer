@@ -21,7 +21,6 @@ function setup() {
   cube3 = new Cube(0,0,50)
   rectangle = new Rectangle(70,80,200,100,20)
   // grid = new Rectangle(500,500,1000,1000,5) //add grid back
-
   screenObjects.push(cube,cube2,cube3,rectangle); //add grid back when uncommenting
 
 }
@@ -33,7 +32,6 @@ function draw() {
   background(100);
 
   drawGui()
-
   drawCameraView();
   
   RotateObjects(joystick.valX,joystick.valY);
