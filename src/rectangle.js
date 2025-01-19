@@ -14,6 +14,7 @@ class Rectangle{
 
   x;
   y;
+  z;
 
   /**
  * Create a rectangle.
@@ -27,15 +28,15 @@ class Rectangle{
  * 
  */
 
-  constructor(x,y,w,l,h){
-    this.vertex1 = new Matrix(4, 1, [[(0-l/2)-x], [(0-h/2)-y], [0-w/2],[1]]);
-    this.vertex2 = new Matrix(4, 1, [[(l/2)-x], [(0-h/2)-y], [0-w/2],[1]]);
-    this.vertex3 = new Matrix(4, 1, [[(l/2)-x], [(h/2)-y], [0-w/2],[1]]);
-    this.vertex4 = new Matrix(4, 1, [[(0-l/2)-x], [(h/2)-y], [0-w/2],[1]]);
-    this.vertex5 = new Matrix(4, 1, [[(0-l/2)-x], [(0-h/2)-y], [w/2],[1]]);
-    this.vertex6 = new Matrix(4, 1, [[(l/2)-x], [(0-h/2)-y], [w/2],[1]]);
-    this.vertex7 = new Matrix(4, 1, [[(0-l/2)-x], [(h/2)-y], [w/2],[1]]);
-    this.vertex8 = new Matrix(4, 1, [[(l/2)-x], [(h/2)-y], [w/2],[1]]);
+  constructor(x,y,z,w,l,h){
+    this.vertex1 = new Matrix(4, 1, [[(0-l/2)-x], [(0-h/2)-y], [0-w/2]-z,[1]]);
+    this.vertex2 = new Matrix(4, 1, [[(l/2)-x], [(0-h/2)-y], [0-w/2]-z,[1]]);
+    this.vertex3 = new Matrix(4, 1, [[(l/2)-x], [(h/2)-y], [0-w/2]-z,[1]]);
+    this.vertex4 = new Matrix(4, 1, [[(0-l/2)-x], [(h/2)-y], [0-w/2]-z,[1]]);
+    this.vertex5 = new Matrix(4, 1, [[(0-l/2)-x], [(0-h/2)-y], [w/2]-z,[1]]);
+    this.vertex6 = new Matrix(4, 1, [[(l/2)-x], [(0-h/2)-y], [w/2]-z,[1]]);
+    this.vertex7 = new Matrix(4, 1, [[(0-l/2)-x], [(h/2)-y], [w/2]-z,[1]]);
+    this.vertex8 = new Matrix(4, 1, [[(l/2)-x], [(h/2)-y], [w/2]-z,[1]]);
     this.faces = {
       front: [this.vertex1.matrix,this.vertex2.matrix,
              this.vertex3.matrix,this.vertex4.matrix],
@@ -53,6 +54,7 @@ class Rectangle{
     }
     this.x = x;
     this.y = y;
+    this.z = z;
   }
 
 

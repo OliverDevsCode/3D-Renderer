@@ -33,16 +33,16 @@ function drawCameraView(){
 
 function mouseWheel(event){
   if(event.delta < 0){
-    for(let i =0;i < screenObjects.length; i++){
-      screenObjects[i].scale(1.1)
+    // for(let i =0;i < screenObjects.length; i++){
+    //   screenObjects[i].scale(1.1)
 
-    }
+    // }
     Camera.z -= 10
   }
   if(event.delta > 0){
-    for(let i =0;i < screenObjects.length; i++){
-      screenObjects[i].scale(0.9)
-    }
+    // for(let i =0;i < screenObjects.length; i++){
+    //   screenObjects[i].scale(0.9)
+    // }
     Camera.z += 10
 
   }

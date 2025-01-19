@@ -24,15 +24,15 @@ class Cube{
  * 
  */
 
-  constructor(x,y,w){
-    this.vertex1 = new Matrix(4, 1, [[(0-w/2)-x], [(0-w/2)-y], [(0-w/2)],[1]]);
-    this.vertex2 = new Matrix(4, 1, [[(w/2)-x], [(0-w/2)-y], [(0-w/2)],[1]]);
-    this.vertex3 = new Matrix(4, 1, [[(w/2)-x], [(w/2)-y], [(0-w/2)],[1]]);
-    this.vertex4 = new Matrix(4, 1, [[(0-w/2)-x], [(w/2)-y], [(0-w/2)],[1]]);
-    this.vertex5 = new Matrix(4, 1, [[(0-w/2)-x], [(0-w/2)-y], [(w/2)],[1]]);
-    this.vertex6 = new Matrix(4, 1, [[(w/2)-x], [(0-w/2)-y], [(w/2)],[1]]);
-    this.vertex7 = new Matrix(4, 1, [[(0-w/2)-x], [(w/2)-y], [(w/2)],[1]]);
-    this.vertex8 = new Matrix(4, 1, [[(w/2)-x], [(w/2)-y], [(w/2)],[1]]);
+  constructor(x,y,z,w){
+    this.vertex1 = new Matrix(4, 1, [[(0-w/2)-x], [(0-w/2)-y], [(0-w/2)]-z,[1]]);
+    this.vertex2 = new Matrix(4, 1, [[(w/2)-x], [(0-w/2)-y], [(0-w/2)]-z,[1]]);
+    this.vertex3 = new Matrix(4, 1, [[(w/2)-x], [(w/2)-y], [(0-w/2)]-z,[1]]);
+    this.vertex4 = new Matrix(4, 1, [[(0-w/2)-x], [(w/2)-y], [(0-w/2)]-z,[1]]);
+    this.vertex5 = new Matrix(4, 1, [[(0-w/2)-x], [(0-w/2)-y], [(w/2)]-z,[1]]);
+    this.vertex6 = new Matrix(4, 1, [[(w/2)-x], [(0-w/2)-y], [(w/2)]-z,[1]]);
+    this.vertex7 = new Matrix(4, 1, [[(0-w/2)-x], [(w/2)-y], [(w/2)]-z,[1]]);
+    this.vertex8 = new Matrix(4, 1, [[(w/2)-x], [(w/2)-y], [(w/2)]-z,[1]]);
     this.faces = {
       front: [this.vertex1.matrix,this.vertex2.matrix,
              this.vertex3.matrix,this.vertex4.matrix],
