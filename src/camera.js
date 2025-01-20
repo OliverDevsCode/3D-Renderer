@@ -27,21 +27,12 @@ function drawCameraView(){
   for(let i =0; i < depth.length;i++){
 
     let cameraCube = Object.assign(screenObjects[depth[i][0]])
-    console.log("Z BEFRORE ",cameraCube.vertex1.matrix[2])
-    cameraCube.translate(-Camera.x,-Camera.y,-Camera.z)
-    console.log("Z AFTER TRANS ",cameraCube.vertex1.matrix[2])
-    cameraCube.rotate("x",Camera.xYaw)
-    cameraCube.rotate("y",Camera.yYaw)
-    cameraCube.rotate("z",Camera.zYaw)
-    cameraCube.translate(500,500,0)
-    console.log("Z Before draw ",cameraCube.vertex1.matrix[2])
-    cameraCube.draw();
-    cameraCube.translate(-500,-500,0)
-    cameraCube.rotate("z",-Camera.zYaw)
-    cameraCube.rotate("y",-Camera.yYaw)
-    cameraCube.rotate("x",-Camera.xYaw)
+    
 
-    cameraCube.translate(Camera.x,Camera.y,Camera.z)
+    cameraCube.draw(Camera.x,Camera.y,Camera.z,Camera.xYaw,Camera.yYaw,Camera.zYaw);
+    
+
+    // cameraCube.translate(Camera.x,Camera.y,Camera.z)
 
 
 
@@ -86,26 +77,26 @@ function RotateObjects(valY,valX){
 
 function doubleClicked(){
   cube.perspective()
-  cube2.perspective()
-  cube3.perspective()
+  // cube2.perspective()
+  // cube3.perspective()
 
 }
 
 function CameraControls(){
   if (keyIsDown(LEFT_ARROW) === true) {
-    Camera.x += 10;
-  }
-  
-  if (keyIsDown(RIGHT_ARROW) === true) {
     Camera.x -= 10;
   }
   
+  if (keyIsDown(RIGHT_ARROW) === true) {
+    Camera.x += 10;
+  }
+  
   if (keyIsDown(UP_ARROW) === true) {
-    Camera.y -= 10;
+    Camera.y += 10;
   }
   
   if (keyIsDown(DOWN_ARROW) === true) {
-    Camera.y += 10;
+    Camera.y -= 10;
   }
 
   //W +Y ROTATION
@@ -120,14 +111,13 @@ function CameraControls(){
   
   //A -X ROTATION
   if (keyIsDown(65) === true) {
-    Camera.yYaw += 1;
+    Camera.yYaw -= 1;
     // Camera.zYaw += 1;
 
   }
 
   //D X ROTATION
   if (keyIsDown(68) === true) {
-    Camera.yYaw -= 1;
-    // Camera.zYaw -= 1;
+    Camera.yYaw += 1;
   }
 }
