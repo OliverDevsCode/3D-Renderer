@@ -442,7 +442,7 @@ class Rectangle{
     this.screenVertex8 = new Matrix(4,1,this.vertex8.matrix)
 
 
-    this.cameraTranslate(500,500,0)
+    // this.cameraTranslate(500,500,0)
     this.cameraTranslate(-cameraX,-cameraY,-cameraZ)
     this.cameraRotate("x",xYaw)
     this.cameraRotate("y",yYaw)
@@ -505,22 +505,30 @@ class Rectangle{
 
   colourFace(face){
     if(face == "front"){
-      return "#FF0000"
+      // return "#FF0000"
+      return "#976C4A"
     }
     if(face == "back"){
-      return "#00FF00"
+      // return "#00FF00"
+      return "#976C4A"
     }
     if(face == "left"){
-      return "#f5d142"
+      // return "#f5d142"
+      return "#976C4A"
     }
     if(face == "right"){
-      return "#4254f5"
+      // return "#4254f5"
+      return "#976C4A"
     }
     if(face == "top"){
-      return "#f59342"
+      // return "#f59342"
+      return "#976C4A"
+
     }
     if(face == "base"){
-      return "#f542d1"
+      // return "#f542d1"
+      return "#6AA940"
+
     }
   }
 
