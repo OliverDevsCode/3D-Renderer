@@ -315,8 +315,8 @@ class Cube{
 
   }
 
-  perspective(){
-    let fov = 45; // degrees
+  perspective(FOV){
+    let fov = FOV; // degrees
     let aspect = 1; // aspect ratio (for a 1000x1000 canvas)
     let n = 1; // near plane distance
     let f = -1000 // far plane distance
@@ -423,7 +423,7 @@ class Cube{
 
   }
 
-  draw(cameraX,cameraY,cameraZ,xYaw,yYaw,zYaw){
+  draw(fov,cameraX,cameraY,cameraZ,xYaw,yYaw,zYaw){
 
     
     this.screenVertex1 = new Matrix(4,1,this.vertex1.matrix)
@@ -441,7 +441,7 @@ class Cube{
     this.cameraRotate("x",xYaw)
     this.cameraRotate("y",yYaw)
     this.cameraRotate("z",zYaw)
-    this.perspective()
+    this.perspective(fov)
 
 
 

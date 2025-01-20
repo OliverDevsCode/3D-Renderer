@@ -25,61 +25,18 @@ function drawCameraView(){
   }
   depth = depth.sort((b, a) => a[1] - b[1]) 
   for(let i =0; i < depth.length;i++){
-
-    let cameraCube = Object.assign(screenObjects[depth[i][0]])
-    
-
-    cameraCube.draw(Camera.x,Camera.y,Camera.z,Camera.xYaw,Camera.yYaw,Camera.zYaw);
-    
-
-    // cameraCube.translate(Camera.x,Camera.y,Camera.z)
-
-
-
-    // screenObjects[depth[i][0]].translate(Camera.x,Camera.y,Camera.z)
-    // // screenObjects[depth[i][0]].draw();
-    // screenObjects[depth[i][0]].translate(-Camera.x,-Camera.y,-Camera.z)
-
-
+    screenObjects[depth[i][0]].draw(45,Camera.x,Camera.y,Camera.z,Camera.xYaw,Camera.yYaw,Camera.zYaw);
   }  
-
 }
 
 function mouseWheel(event){
   if(event.delta < 0){
-    // for(let i =0;i < screenObjects.length; i++){
-    //   screenObjects[i].scale(1.1)
-
-    // }
-    Camera.z -= 10
+    Camera.z -= 10;
   }
   if(event.delta > 0){
-    // for(let i =0;i < screenObjects.length; i++){
-    //   screenObjects[i].scale(0.9)
-    // }
-    Camera.z += 10
+    Camera.z += 10;
 
   }
-  
-}
-
-function RotateObjects(valY,valX){
-  for(let i =0; i < screenObjects.length;i++){
-    // screenObjects[i].rotate("y",valX)
-    // screenObjects[i].rotate("x",valY)
-
-    //TESTING CAMERA YAW PROPERTIES
-    // Camera.zYaw = -parseInt(valX)*0.5
-    // Camera.yYaw = -parseInt(valY)*0.5
-
-  }
-}
-
-function doubleClicked(){
-  cube.perspective()
-  // cube2.perspective()
-  // cube3.perspective()
-
 }
 
 function CameraControls(){

@@ -21,8 +21,8 @@ function setup() {
   //3D Objects
   cube = new Cube(200,200,0,100)
   cube2 = new Cube(400,200,0,100)
-  cube3 = new Cube(0,30,0,50)
-  zCube = new Cube(0,0,-200,25)
+  cube3 = new Cube(0,30,0,100)
+  zCube = new Cube(0,0,2000,100)
   yaxis = new Rectangle(0,10,0,2,2,500)
   zaxis = new Rectangle(0,10,0,500,2,2)
   xaxis = new Rectangle(0,10,0,2,500,2)
@@ -42,8 +42,6 @@ function draw() {
 
   CameraControls()
   
-  RotateObjects(joystick.valX,joystick.valY);
-
   let fps = Math.floor(frameRate());
   push()
   fill(255,255,255)
