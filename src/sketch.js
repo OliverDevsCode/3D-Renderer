@@ -43,8 +43,6 @@ function setup() {
   grassBlock3.rotate("y",PI/2)
   grassBlock3.translate(100,-450,-200)
   
-  
-
   // screenObjects.push(cube,cube2,cube3,xaxis,yaxis,zaxis,zCube); Testing Version
   screenObjects.push(ground,grassBlock1,grassBlock2,grassBlock3); 
 

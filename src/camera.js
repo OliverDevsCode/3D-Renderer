@@ -32,30 +32,38 @@ function drawCameraView(){
 
 function mouseWheel(event){
   if(event.delta < 0){
-    Camera.z -= 10;
+    // Camera.z -= 10;
+    Camera.z -= cos(Camera.yYaw)*10
+    Camera.x -= sin(Camera.zYaw)*10
+    Camera.y -= sin(Camera.xYaw)*10
+
   }
   if(event.delta > 0){
-    Camera.z += 10;
+    // Camera.z += 10;
+    Camera.z += cos(Camera.yYaw)*10
+    Camera.x += sin(Camera.zYaw)*10
+    Camera.y += sin(Camera.xYaw)*10
+
 
   }
 }
 
 function CameraControls(){
-  if (keyIsDown(LEFT_ARROW) === true) {
-    Camera.x -= 10;
-  }
+  // if (keyIsDown(LEFT_ARROW) === true) {
+  //   Camera.x -= 10;
+  // }
   
-  if (keyIsDown(RIGHT_ARROW) === true) {
-    Camera.x += 10;
-  }
+  // if (keyIsDown(RIGHT_ARROW) === true) {
+  //   Camera.x += 10;
+  // }
   
-  if (keyIsDown(UP_ARROW) === true) {
-    Camera.y += 10;
-  }
+  // if (keyIsDown(UP_ARROW) === true) {
+  //   Camera.y += 10;
+  // }
   
-  if (keyIsDown(DOWN_ARROW) === true) {
-    Camera.y -= 10;
-  }
+  // if (keyIsDown(DOWN_ARROW) === true) {
+  //   Camera.y -= 10;
+  // }
 
   //W +Y ROTATION
   if (keyIsDown(87) === true) {
