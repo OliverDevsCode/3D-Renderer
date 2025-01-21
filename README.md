@@ -6,15 +6,14 @@ Perspective Camera is currently under development
 
 # Temporary Camera Controls
 
-W - Rotate +Y axis
-S - Rotate -Y axis
-A - Rotate +X axis
-D - Rotate -X axis
+W - Move Forward
+S - Move Left
+A - Move Right
+D - Move Back
+Q - Move UP
+E - Move Down
 
-UP arrow - Move +Y axis
-DOWN arrow - Move -Y axis
-LEFT arrow - Move -X axis
-RIGHT arrow - Move +X axis
+Mouse - look around
 
-scroll UP - Move +Z axis
-scroll DOWN - Move -Z axis
+scroll UP - Decrease FOV
+scroll DOWN - Increasse FOV
