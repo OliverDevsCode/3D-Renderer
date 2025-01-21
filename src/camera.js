@@ -5,6 +5,7 @@ let Camera = {
   xYaw:0,
   yYaw:0,
   zYaw:0,
+  fov:45,
 }
 
 function drawCameraView(){
@@ -25,7 +26,7 @@ function drawCameraView(){
   }
   depth = depth.sort((b, a) => a[1] - b[1]) 
   for(let i =0; i < depth.length;i++){
-    screenObjects[depth[i][0]].draw(45,Camera.x,Camera.y,Camera.z,Camera.xYaw,Camera.yYaw,Camera.zYaw);
+    screenObjects[depth[i][0]].draw(Camera.fov,Camera.x,Camera.y,Camera.z,Camera.xYaw,Camera.yYaw,Camera.zYaw);
   }  
 }
 
