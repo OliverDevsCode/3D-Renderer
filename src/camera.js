@@ -32,17 +32,13 @@ function drawCameraView(){
 
 function mouseWheel(event){
   if(event.delta < 0){
-    // Camera.z -= 10;
-    Camera.z -= cos(Camera.YAW)*10
-    Camera.x -= sin(Camera.ROLL)*10
-    Camera.y -= sin(Camera.PITCH)*10
+    Camera.fov -= 2.5;
+    
 
   }
   if(event.delta > 0){
-    // Camera.z += 10;
-    Camera.z += cos(Camera.YAW)*10
-    Camera.x += sin(Camera.ROLL)*10
-    Camera.y += sin(Camera.PITCH)*10
+    Camera.fov += 2.5;
+    
 
 
   }
