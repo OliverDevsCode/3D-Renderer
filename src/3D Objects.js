@@ -28,9 +28,13 @@ function createBasicScene(){
 
 function createGameDemo(){
   //3D Game Enviroment
-  ground = new Rectangle(0,500,0,500,500,2)
-  grassBlock1 = new Cube(200,450,0,100)
+  ground = new Rectangle(0,0,0,500,500,2)
+  ground.translate(0,-500,0)
+  grassBlock1 = new Cube(0,0,0,100)
+  grassBlock1.translate(-200,-450,0)
+
   grassBlock2 = new Cube(0,0,0,100)
+  
   grassBlock3 = new Cube(0,0,0,100)
   grassBlock2.rotate("z",PI/2)
   grassBlock2.rotate("y",PI/2)

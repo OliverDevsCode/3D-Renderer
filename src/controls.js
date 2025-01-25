@@ -80,7 +80,6 @@ function onMouseMove(event) {
     // Update deltas
     deltaX = event.movementX;
     deltaY = event.movementY;
-    console.log(`X:${deltaX}, Y:${deltaY}`)
     Camera.PITCH += (deltaY)/10;
     Camera.YAW += (deltaX)/10;
   
