@@ -1,7 +1,7 @@
 # 3D-Renderer
 Making a 3D Environment via Matrices with a adjustable camera view from scratch
 
-#Demo Page
+# Demo-Page
 https://oliverdevscode.github.io/3D-Renderer/
 
 # Temporary Camera Controls
