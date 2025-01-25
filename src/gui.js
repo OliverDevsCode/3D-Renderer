@@ -1,3 +1,0 @@
-let gui;
-
-let joystick;
