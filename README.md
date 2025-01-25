@@ -1,8 +1,8 @@
 # 3D-Renderer
-Making a 3D Environment via Matrices with a adjustable camera view
+Making a 3D Environment via Matrices with a adjustable camera view from scratch
 
-Currently Cubes and Rectangles can be added to the screen
-Perspective Camera is currently under development
+#Demo Page
+https://oliverdevscode.github.io/3D-Renderer/
 
 # Temporary Camera Controls
 
@@ -16,4 +16,4 @@ E - Move Down
 Mouse - look around
 
 scroll UP - Decrease FOV
-scroll DOWN - Increasse FOV
+scroll DOWN - Increase FOV
