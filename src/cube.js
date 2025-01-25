@@ -100,7 +100,7 @@ class Cube{
       this.vertex6 = new Matrix(4,1,multiply(rotateXAXIS,this.vertex6))
       this.vertex7 = new Matrix(4,1,multiply(rotateXAXIS,this.vertex7))
       this.vertex8 = new Matrix(4,1,multiply(rotateXAXIS,this.vertex8))
-      console.log(JSON.stringify(this.vertex1.matrix))
+      // console.log(JSON.stringify(this.vertex1.matrix))
     }
     if(axis == "y"){
       this.vertex1 = new Matrix(4,1,multiply(rotateYAXIS,this.vertex1))
@@ -111,7 +111,7 @@ class Cube{
       this.vertex6 = new Matrix(4,1,multiply(rotateYAXIS,this.vertex6))
       this.vertex7 = new Matrix(4,1,multiply(rotateYAXIS,this.vertex7))
       this.vertex8 = new Matrix(4,1,multiply(rotateYAXIS,this.vertex8))
-      console.log(JSON.stringify(this.vertex1.matrix))
+      // console.log(JSON.stringify(this.vertex1.matrix))
 
 
     }
@@ -124,7 +124,7 @@ class Cube{
       this.vertex6 = new Matrix(4,1,multiply(rotateZAXIS,this.vertex6))
       this.vertex7 = new Matrix(4,1,multiply(rotateZAXIS,this.vertex7))
       this.vertex8 = new Matrix(4,1,multiply(rotateZAXIS,this.vertex8))
-      console.log(JSON.stringify(this.vertex1.matrix))
+      // console.log(JSON.stringify(this.vertex1.matrix))
 
     }
 
@@ -185,7 +185,7 @@ class Cube{
       this.screenVertex6 = new Matrix(4,1,multiply(rotateXAXIS,this.screenVertex6))
       this.screenVertex7 = new Matrix(4,1,multiply(rotateXAXIS,this.screenVertex7))
       this.screenVertex8 = new Matrix(4,1,multiply(rotateXAXIS,this.screenVertex8))
-      console.log(JSON.stringify(this.screenVertex1.matrix))
+      // console.log(JSON.stringify(this.screenVertex1.matrix))
     }
     if(axis == "y"){
       this.screenVertex1 = new Matrix(4,1,multiply(rotateYAXIS,this.screenVertex1))
@@ -196,7 +196,7 @@ class Cube{
       this.screenVertex6 = new Matrix(4,1,multiply(rotateYAXIS,this.screenVertex6))
       this.screenVertex7 = new Matrix(4,1,multiply(rotateYAXIS,this.screenVertex7))
       this.screenVertex8 = new Matrix(4,1,multiply(rotateYAXIS,this.screenVertex8))
-      console.log(JSON.stringify(this.screenVertex1.matrix))
+      // console.log(JSON.stringify(this.screenVertex1.matrix))
 
 
     }
@@ -209,7 +209,7 @@ class Cube{
       this.screenVertex6 = new Matrix(4,1,multiply(rotateZAXIS,this.screenVertex6))
       this.screenVertex7 = new Matrix(4,1,multiply(rotateZAXIS,this.screenVertex7))
       this.screenVertex8 = new Matrix(4,1,multiply(rotateZAXIS,this.screenVertex8))
-      console.log(JSON.stringify(this.screenVertex1.matrix))
+      // console.log(JSON.stringify(this.screenVertex1.matrix))
 
     }
 
@@ -333,7 +333,7 @@ class Cube{
       [0, 0, -(f + n) / (f - n), -2 * f * n / (f - n)],
       [0, 0, -1, 0]]);
       
-      console.log("Vertex Start",JSON.stringify(this.screenVertex1.matrix))
+      // console.log("Vertex Start",JSON.stringify(this.screenVertex1.matrix))
 
       
       this.screenVertex1 = new Matrix(4,1,multiply(perspectiveMatrix,this.screenVertex1))
@@ -345,12 +345,12 @@ class Cube{
       this.screenVertex7 = new Matrix(4,1,multiply(perspectiveMatrix,this.screenVertex7))
       this.screenVertex8 = new Matrix(4,1,multiply(perspectiveMatrix,this.screenVertex8))
 
-      console.log("Vertex After",JSON.stringify(this.screenVertex1.matrix))
+      // console.log("Vertex After",JSON.stringify(this.screenVertex1.matrix))
 
 
       // Perspective division for vertex1
       let w1 = this.screenVertex1.matrix[3]; // Extract w'
-      console.log("w1",w1)
+      // console.log("w1",w1)
       this.screenVertex1.matrix[0] /= w1;    // x' / w'
       this.screenVertex1.matrix[1] /= w1;    // y' / w'
       this.screenVertex1.matrix[2] /= w1;    // z' / w'
@@ -398,7 +398,7 @@ class Cube{
       this.screenVertex8.matrix[2] /= w8;
       this.screenVertex8.matrix[3] = 1;
 
-      console.log("Vertex end",JSON.stringify(this.screenVertex1.matrix))
+      // console.log("Vertex end",JSON.stringify(this.screenVertex1.matrix))
 
       //map to screen
 
@@ -418,7 +418,7 @@ class Cube{
       this.screenVertex7 = new Matrix(4,1,multiply(map,this.screenVertex7))
       this.screenVertex8 = new Matrix(4,1,multiply(map,this.screenVertex8))
 
-      console.log("After map",JSON.stringify(this.screenVertex1.matrix))
+      // console.log("After map",JSON.stringify(this.screenVertex1.matrix))
 
 
   }
