@@ -17,7 +17,7 @@ function setup() {
 function draw() {
   frameRate(100) //Change for smoother experience
   angleMode(DEGREES)
-  background(100);
+  background(255);
   drawCameraView();
   CameraControls()
   
@@ -27,7 +27,7 @@ function draw() {
   fill(255,255,255)
   text(fps, 50, 50);
   pop()
-
+  
 }
 
 

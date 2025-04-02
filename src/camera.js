@@ -1,8 +1,8 @@
 let Camera = {
   x:0,
-  y:0,
+  y:-100,
   z:1000,
-  PITCH:0,
+  PITCH:20,
   YAW:0,
   ROLL:0,
   fov:45,
