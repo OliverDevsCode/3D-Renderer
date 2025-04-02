@@ -33,14 +33,14 @@ function createGameDemo(){
   grassBlock1 = new Cube(0,0,0,100)
   grassBlock1.translate(-200,-450,0)
 
-  grassBlock2 = new Cube(0,0,0,100)
+  grassBlock2 = new Cube(0,0,300,100)
   
   grassBlock3 = new Cube(0,0,0,100)
   grassBlock2.rotate("z",PI/2)
   grassBlock2.rotate("y",PI/2)
   grassBlock2.translate(200,-450,-200)
   grassBlock3.rotate("z",PI/2)
-  grassBlock3.rotate("y",PI/2)
+  grassBlock3.rotate("y",PI)
   grassBlock3.translate(100,-450,-200)
 
   screenObjects.push(ground,grassBlock1,grassBlock2,grassBlock3); 

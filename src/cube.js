@@ -477,7 +477,7 @@ class Cube{
     //draw the faces in the order of this array
     for(let i =0; i < PosOrder.length;i++){
       for(let j = 0; j < 4; j ++){
-        circle(this.faces[PosOrder[i][0]][j][0][0],this.faces[PosOrder[i][0]][j][1][0],10)
+        // circle(this.faces[PosOrder[i][0]][j][0][0],this.faces[PosOrder[i][0]][j][1][0],10)
       }
       push()
       fill(this.colourFace(PosOrder[i][0]))

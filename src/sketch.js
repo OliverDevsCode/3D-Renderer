@@ -15,7 +15,7 @@ function setup() {
 }
 
 function draw() {
-  // frameRate(160) //Change for smoother experience
+  frameRate(100) //Change for smoother experience
   angleMode(DEGREES)
   background(100);
   drawCameraView();
