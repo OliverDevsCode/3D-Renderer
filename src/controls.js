@@ -64,7 +64,13 @@ function doubleClicked() {
   if (!isPointerLocked) {
     canvas.requestPointerLock();
   }
+  if(placeMode == true){
+    placeMode = false
+    screenObjects.push(mouseCube)
+  }
 }
+
+
 
 // Event listener for pointer lock change
 function onPointerLockChange() {

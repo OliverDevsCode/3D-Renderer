@@ -1,6 +1,11 @@
 html, body {
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center; /* Centers canvas horizontally */
+  align-items: center; /* Centers canvas vertically */
+  height: 100vh; /* Full viewport height */
+  background-color: rgb(34, 38, 38);
 }
 
 canvas {

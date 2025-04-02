@@ -46,3 +46,12 @@ function createGameDemo(){
   screenObjects.push(ground,grassBlock1,grassBlock2,grassBlock3); 
 
 }
+
+let placeMode = false
+let mouseCube;
+function addCube(){
+  if(placeMode == true){
+    mouseCube = new Cube(-mouseX + 500,mouseY,0,100)
+    mouseCube.draw(Camera.fov,Camera.x,Camera.y,Camera.z,Camera.PITCH,Camera.YAW,Camera.ROLL)
+  }
+}
