@@ -25,6 +25,8 @@ class Rectangle{
   y;
   z;
 
+  texs;
+
   /**
  * Create a rectangle.
  * @constructor
@@ -37,7 +39,7 @@ class Rectangle{
  * 
  */
 
-  constructor(x,y,z,w,l,h){
+  constructor(x,y,z,w,l,h,texs){
     this.vertex1 = new Matrix(4, 1, [[(0-l/2)-x], [(0-h/2)-y], [0-w/2]-z,[1]]);
     this.vertex2 = new Matrix(4, 1, [[(l/2)-x], [(0-h/2)-y], [0-w/2]-z,[1]]);
     this.vertex3 = new Matrix(4, 1, [[(l/2)-x], [(h/2)-y], [0-w/2]-z,[1]]);
@@ -64,6 +66,8 @@ class Rectangle{
     this.x = x;
     this.y = y;
     this.z = z;
+    this.texs = texs;
+    console.log("tex",this.texs)
   }
 
 
@@ -429,73 +433,143 @@ class Rectangle{
 
   }
 
-  draw(fov,cameraX,cameraY,cameraZ,xYaw,yYaw,zYaw){
+    draw(fov, cameraX, cameraY, cameraZ, xYaw, yYaw, zYaw) {
+  // Copy world vertices to screen vertices
+  this.screenVertex1 = new Matrix(4, 1, this.vertex1.matrix);
+  this.screenVertex2 = new Matrix(4, 1, this.vertex2.matrix);
+  this.screenVertex3 = new Matrix(4, 1, this.vertex3.matrix);
+  this.screenVertex4 = new Matrix(4, 1, this.vertex4.matrix);
+  this.screenVertex5 = new Matrix(4, 1, this.vertex5.matrix);
+  this.screenVertex6 = new Matrix(4, 1, this.vertex6.matrix);
+  this.screenVertex7 = new Matrix(4, 1, this.vertex7.matrix);
+  this.screenVertex8 = new Matrix(4, 1, this.vertex8.matrix);
 
-    
-    this.screenVertex1 = new Matrix(4,1,this.vertex1.matrix)
-    this.screenVertex2 = new Matrix(4,1,this.vertex2.matrix)
-    this.screenVertex3 = new Matrix(4,1,this.vertex3.matrix)
-    this.screenVertex4 = new Matrix(4,1,this.vertex4.matrix)
-    this.screenVertex5 = new Matrix(4,1,this.vertex5.matrix)
-    this.screenVertex6 = new Matrix(4,1,this.vertex6.matrix)
-    this.screenVertex7 = new Matrix(4,1,this.vertex7.matrix)
-    this.screenVertex8 = new Matrix(4,1,this.vertex8.matrix)
+  this.cameraTranslate(-cameraX, -cameraY, -cameraZ);
+  this.cameraRotate("x", xYaw);
+  this.cameraRotate("y", yYaw);
+  this.cameraRotate("z", zYaw);
+  this.perspective(fov);
 
+  this.faces = {
+    front: [this.screenVertex1.matrix, this.screenVertex2.matrix, this.screenVertex3.matrix, this.screenVertex4.matrix],
+    back: [this.screenVertex5.matrix, this.screenVertex6.matrix, this.screenVertex8.matrix, this.screenVertex7.matrix],
+    left: [this.screenVertex5.matrix, this.screenVertex1.matrix, this.screenVertex4.matrix, this.screenVertex7.matrix],
+    right: [this.screenVertex2.matrix, this.screenVertex6.matrix, this.screenVertex8.matrix, this.screenVertex3.matrix],
+    top: [this.screenVertex1.matrix, this.screenVertex2.matrix, this.screenVertex6.matrix, this.screenVertex5.matrix],
+    base: [this.screenVertex3.matrix, this.screenVertex4.matrix, this.screenVertex7.matrix, this.screenVertex8.matrix],
+  };
 
-    // this.cameraTranslate(500,500,0)
-    this.cameraTranslate(-cameraX,-cameraY,-cameraZ)
-    this.cameraRotate("x",xYaw)
-    this.cameraRotate("y",yYaw)
-    this.cameraRotate("z",zYaw)
-    this.perspective(fov)
+  let PosOrder = [];
 
+  PosOrder.push(["front", this.drawOrder(this.faces.front)]);
+  PosOrder.push(["left", this.drawOrder(this.faces.left)]);
+  PosOrder.push(["right", this.drawOrder(this.faces.right)]);
+  PosOrder.push(["back", this.drawOrder(this.faces.back)]);
+  PosOrder.push(["top", this.drawOrder(this.faces.top)]);
+  PosOrder.push(["base", this.drawOrder(this.faces.base)]);
 
+  PosOrder = PosOrder.sort((b, a) => a[1] - b[1]); // z-sort
 
+  for (let i = 0; i < PosOrder.length; i++) {
+    const faceName = PosOrder[i][0];
+    const face = this.faces[faceName];
 
-    this.faces = {
-      front: [this.screenVertex1.matrix,this.screenVertex2.matrix,
-             this.screenVertex3.matrix,this.screenVertex4.matrix],
-      back: [this.screenVertex5.matrix,this.screenVertex6.matrix,
-             this.screenVertex8.matrix,this.screenVertex7.matrix],
-      left: [this.screenVertex5.matrix,this.screenVertex1.matrix,
-             this.screenVertex4.matrix,this.screenVertex7.matrix],
-      right: [this.screenVertex2.matrix,this.screenVertex6.matrix,
-             this.screenVertex8.matrix,this.screenVertex3.matrix],
-      top: [this.screenVertex1.matrix,this.screenVertex2.matrix,
-           this.screenVertex6.matrix,this.screenVertex5.matrix],
-      base: [this.screenVertex3.matrix,this.screenVertex4.matrix,
-            this.screenVertex7.matrix,this.screenVertex8.matrix],
-    }
-    
-    let PosOrder = []
+    if (faceName === "base" && (this.texs != undefined)) {
+      let v0 = [face[0][0][0], face[0][1][0]];
+      let v1 = [face[1][0][0], face[1][1][0]];
+      let v2 = [face[2][0][0], face[2][1][0]];
+      let v3 = [face[3][0][0], face[3][1][0]];
 
-    PosOrder.push(["front",this.drawOrder(this.faces.front)])
-    PosOrder.push(["left",this.drawOrder(this.faces.left)])
-    PosOrder.push(["right",this.drawOrder(this.faces.right)])
-    PosOrder.push(["back",this.drawOrder(this.faces.back)])
-    PosOrder.push(["top",this.drawOrder(this.faces.top)])
-    PosOrder.push(["base",this.drawOrder(this.faces.base)])
+      let tex = this.texs[0];
+      let texSize = 16;
 
-    PosOrder = PosOrder.sort((b, a) => a[1] - b[1]) 
+      for (let y = 0; y < texSize; y++) {
+        for (let x = 0; x < texSize; x++) {
+          let u0 = x / texSize;
+          let v0f = y / texSize;
+          let u1 = (x + 1) / texSize;
+          let v1f = (y + 1) / texSize;
 
-    // console.log("Closet ", PosOrder.at(-1)[0])
+          let pA = this.lerp2D(this.lerp2D(v0, v3, u0), this.lerp2D(v1, v2, u0), v0f);
+          let pB = this.lerp2D(this.lerp2D(v0, v3, u1), this.lerp2D(v1, v2, u1), v0f);
+          let pC = this.lerp2D(this.lerp2D(v0, v3, u1), this.lerp2D(v1, v2, u1), v1f);
+          let pD = this.lerp2D(this.lerp2D(v0, v3, u0), this.lerp2D(v1, v2, u0), v1f);
 
-    //draw the faces in the order of this array
-    for(let i =0; i < PosOrder.length;i++){
-      for(let j = 0; j < 4; j ++){
-        // circle(this.faces[PosOrder[i][0]][j][0][0],this.faces[PosOrder[i][0]][j][1][0],10)
+          let col = tex.get(x, y);
+
+          fill(col);
+          noStroke();
+          quad(pA[0], pA[1], pB[0], pB[1], pC[0], pC[1], pD[0], pD[1]);
+        }
       }
-      push()
-      fill(this.colourFace(PosOrder[i][0]))
-      quad(this.faces[PosOrder[i][0]][0][0][0],this.faces[PosOrder[i][0]][0][1][0],
-          this.faces[PosOrder[i][0]][1][0][0],this.faces[PosOrder[i][0]][1][1][0],
-          this.faces[PosOrder[i][0]][2][0][0],this.faces[PosOrder[i][0]][2][1][0],
-          this.faces[PosOrder[i][0]][3][0][0],this.faces[PosOrder[i][0]][3][1][0]
-      )
-      pop()
-    }
+    }else if ((faceName === "left" || faceName === "right" || faceName === "back" || faceName === "front") && (this.texs != undefined)) {
+      let v0 = [face[0][0][0], face[0][1][0]];
+      let v1 = [face[1][0][0], face[1][1][0]];
+      let v2 = [face[2][0][0], face[2][1][0]];
+      let v3 = [face[3][0][0], face[3][1][0]];
 
+      let tex = this.texs[1];
+      let texSize = 16;
+
+      for (let y = 0; y < texSize; y++) {
+        for (let x = 0; x < texSize; x++) {
+          let u0 = x / texSize;
+          let v0f = y / texSize;
+          let u1 = (x + 1) / texSize;
+          let v1f = (y + 1) / texSize;
+
+          let pA = this.lerp2D(this.lerp2D(v0, v3, u0), this.lerp2D(v1, v2, u0), v0f);
+          let pB = this.lerp2D(this.lerp2D(v0, v3, u1), this.lerp2D(v1, v2, u1), v0f);
+          let pC = this.lerp2D(this.lerp2D(v0, v3, u1), this.lerp2D(v1, v2, u1), v1f);
+          let pD = this.lerp2D(this.lerp2D(v0, v3, u0), this.lerp2D(v1, v2, u0), v1f);
+
+          let col = tex.get(x, y);
+
+          fill(col);
+          noStroke();
+          quad(pA[0], pA[1], pB[0], pB[1], pC[0], pC[1], pD[0], pD[1]);
+        }
+      }
+    }else if (faceName === "top" && (this.texs != undefined)) {
+      let v0 = [face[0][0][0], face[0][1][0]];
+      let v1 = [face[1][0][0], face[1][1][0]];
+      let v2 = [face[2][0][0], face[2][1][0]];
+      let v3 = [face[3][0][0], face[3][1][0]];
+
+      let tex = this.texs[2];
+      let texSize = 16;
+
+      for (let y = 0; y < texSize; y++) {
+        for (let x = 0; x < texSize; x++) {
+          let u0 = x / texSize;
+          let v0f = y / texSize;
+          let u1 = (x + 1) / texSize;
+          let v1f = (y + 1) / texSize;
+
+          let pA = this.lerp2D(this.lerp2D(v0, v3, u0), this.lerp2D(v1, v2, u0), v0f);
+          let pB = this.lerp2D(this.lerp2D(v0, v3, u1), this.lerp2D(v1, v2, u1), v0f);
+          let pC = this.lerp2D(this.lerp2D(v0, v3, u1), this.lerp2D(v1, v2, u1), v1f);
+          let pD = this.lerp2D(this.lerp2D(v0, v3, u0), this.lerp2D(v1, v2, u0), v1f);
+
+          let col = tex.get(x, y);
+
+          fill(col);
+          noStroke();
+          quad(pA[0], pA[1], pB[0], pB[1], pC[0], pC[1], pD[0], pD[1]);
+        }
+      }
+    }else {
+      push();
+      fill(this.colourFace(faceName));
+      quad(face[0][0][0], face[0][1][0],
+           face[1][0][0], face[1][1][0],
+           face[2][0][0], face[2][1][0],
+           face[3][0][0], face[3][1][0]);
+      pop();
+    }
   }
+}
+
 
   drawOrder(face){
     //vertex 1 z - vertex 4 z
@@ -540,6 +614,13 @@ class Rectangle{
 
   y(val){
     this.y = val
+  }
+  
+  lerp2D(p1, p2, t) {
+  return [
+    lerp(p1[0], p2[0], t),
+    lerp(p1[1], p2[1], t)
+  ];
   }
 
 }

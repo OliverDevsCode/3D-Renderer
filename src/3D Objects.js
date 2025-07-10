@@ -28,14 +28,14 @@ function createBasicScene(){
 
 function createGameDemo(){
   //3D Game Enviroment
-  ground = new Rectangle(0,0,0,500,500,2)
+  ground = new Rectangle(0,0,0,500,500,2,[grassTopTex,grassSideTex,grassBaseTex])
   ground.translate(0,-500,0)
-  grassBlock1 = new Cube(0,0,0,100)
+  grassBlock1 = new Cube(0,0,0,100,[grassTopTex,grassSideTex,grassBaseTex])
   grassBlock1.translate(-200,-450,0)
 
-  grassBlock2 = new Cube(0,0,300,100)
+  grassBlock2 = new Cube(0,0,300,100,[grassTopTex,grassSideTex,grassBaseTex])
   
-  grassBlock3 = new Cube(0,0,0,100)
+  grassBlock3 = new Cube(0,0,0,100,[grassTopTex,grassSideTex,grassBaseTex])
   grassBlock2.rotate("z",PI/2)
   grassBlock2.rotate("y",PI/2)
   grassBlock2.translate(200,-450,-200)

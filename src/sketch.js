@@ -2,11 +2,26 @@ let isPointerLocked = false;
 let deltaX = 0;
 let deltaY = 0;
 let addButton;
+let grassTopTex 
+let grassSideTex
+let textures = []
+let loadingTex = true;
+let cnv;
+let pixelArrays = [];
 
-function setup() {
-  let cnv = createCanvas(1000, 1000);
+function preload(){
+  //load textures
+  grassSideTex = loadImage('../public/GrassSide.png')
+  grassTopTex = loadImage('../public/GrassTop.png')
+  grassBaseTex = loadImage('../public/GrassBase.png')
+}
+
+async function setup() {
+  cnv = createCanvas(1000, 1000);
+  pixelDensity(1);
   cnv.style('border', '10px solid black');
 
+  // Process textures once after preload
 
   // createBasicScene()
   createGameDemo()
@@ -28,6 +43,7 @@ function setup() {
 }
 
 function draw() {
+
   frameRate(100) //Change for smoother experience
   angleMode(DEGREES)
   background(255);
@@ -46,7 +62,6 @@ function draw() {
     console.log('place mode enter')
   })
 }
-
 
 
 

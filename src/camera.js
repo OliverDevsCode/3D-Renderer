@@ -43,7 +43,7 @@ function drawCameraView(){
   for(let i =0; i < depth.length;i++){
     screenObjects[depth[i][0]].draw(Camera.fov,Camera.x,Camera.y,Camera.z,Camera.PITCH,Camera.YAW,Camera.ROLL);
   }  
-  console.log(`Depth ${depth}`)
+  // console.log(`Depth ${depth}`)
 }
 
 
